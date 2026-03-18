@@ -1,67 +1,43 @@
-# SiteCheck
+# sitecheck
 
-Construction Defect Detector -- an AI-powered inspection tool for identifying and classifying structural defects on construction sites.
+**SiteCheck — Construction Defect Detector. AI vision for construction quality inspection and defect detection.**
 
-## Features
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-proprietary-red)
 
-- **Defect Detection**: CNN-based detector trained to identify cracking, misalignment, water damage, rebar exposure, and honeycombing.
-- **Severity Grading**: Classifies defects into severity tiers (cosmetic, minor, major, critical) with reference to industry standards.
-- **Standards Compliance**: Built-in ACI 318, ACI 301, ASTM C150, ASTM E119, and ASTM C33 tolerance references.
-- **Inspection Checklists**: Trade-specific checklists for concrete, masonry, steel, wood, plumbing, and electrical work.
-- **Report Generation**: Comprehensive inspection reports with findings, photos, and remediation recommendations.
-- **Photo Documentation**: Organises defect evidence with metadata and annotations.
-
-## Installation
-
+## Install
 ```bash
-pip install -e .
+pip install -e ".[dev]"
 ```
 
-## Dependencies
+## Quick Start
+```python
+from src.core import Sitecheck
+ instance = Sitecheck()
+r = instance.detect(input="test")
+```
 
-- torch
-- numpy
-- pydantic
-- click
-- rich
-
-## Usage
-
+## CLI
 ```bash
-# Run an inspection simulation
-sitecheck simulate --defects 10
-
-# Classify a defect
-sitecheck classify --type cracking --width 0.5
-
-# Check standards compliance
-sitecheck standards --code ACI-318
-
-# Generate a full inspection report
-sitecheck report
-
-# View checklist for a trade
-sitecheck checklist --trade concrete
+python -m src status
+python -m src run --input "data"
 ```
 
-## Project Structure
+## API
+| Method | Description |
+|--------|-------------|
+| `detect()` | Detect |
+| `scan()` | Scan |
+| `monitor()` | Monitor |
+| `alert()` | Alert |
+| `get_report()` | Get report |
+| `configure()` | Configure |
+| `get_stats()` | Get stats |
+| `reset()` | Reset |
 
+## Test
+```bash
+pytest tests/ -v
 ```
-src/sitecheck/
-  cli.py              - Command-line interface
-  models.py           - Pydantic data models
-  simulator.py        - Defect simulation engine
-  report.py           - Report generation
-  detector/
-    model.py           - CNN defect detector
-    classifier.py      - Severity grading
-    standards.py       - ACI/ASTM tolerance references
-  inspector/
-    checklist.py       - Trade-specific inspection checklists
-    report_gen.py      - Inspection report generator
-    photo.py           - Photo documentation organiser
-```
 
-## Author
-
-Mukunda Katta
+## License
+(c) 2026 Officethree Technologies. All Rights Reserved.
